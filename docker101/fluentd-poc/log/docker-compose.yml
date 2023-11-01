@@ -1,0 +1,40 @@
+version: "3.7"
+services:
+  fluentd:
+    image: ${DOCKER_REGISTRY-}fluentd
+    build: ./fluentd
+    depends_on:
+      - elasticsearch
+      - kibana
+    # restart: on-failure
+    ports:
+      - "24224:24224"
+      - "24224:24224/udp"
+    networks:
+      - fluentd
+      - elasticsearch
+  elasticsearch:
+    image: ${DOCKER_REGISTRY-}elasticsearch
+    build: ./elasticsearch
+    restart: on-failure
+    volumes:
+      - ${ELASTICSEARCH_VOLUME}:/usr/share/elasticsearch/data
+    ports:
+      - "9200:9200"
+    networks:
+      - elasticsearch
+      - kibana
+  kibana:
+    image: kibana:7.13.2
+    restart: on-failure
+    depends_on:
+      - elasticsearch
+    ports:
+      - "5601:5601"
+    networks:
+      - kibana
+networks:
+  fluentd:
+    name: medium-fluentd-ntw
+  elasticsearch:
+  kibana:

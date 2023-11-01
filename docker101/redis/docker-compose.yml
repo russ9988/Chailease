@@ -1,0 +1,178 @@
+version: "3"
+services:
+  redis7001:
+    image: redis:latest
+    container_name: redis7001
+    restart: always
+    ports:
+      - "7001:7001"
+    volumes:
+      - D:/AD/Test-porject/redis/redis-cluster/data/7001:/data
+      - D:/AD/Test-porject/redis/redis-cluster/conf/7001/redis.conf:/etc/redis/redis.conf
+      - D:/AD/Test-porject/redis/redis-cluster/etc/7001:/etc/
+    command: >
+      bash -c "echo 'vm.overcommit_memory = 1' >> /etc/sysctl.conf && redis-server /etc/redis/redis.conf"
+    healthcheck:
+      test: [ "CMD", "redis-cli", "-p", "7001", "cluster", "info" ]
+      interval: 1s
+      timeout: 3s
+      retries: 30
+  redis7002:
+    image: redis:latest
+    container_name: redis7002
+    restart: always
+    ports:
+      - "7002:7002"
+    volumes:
+      - D:/AD/Test-porject/redis/redis-cluster/data/7002:/data
+      - D:/AD/Test-porject/redis/redis-cluster/conf/7002/redis.conf:/etc/redis/redis.conf
+      - D:/AD/Test-porject/redis/redis-cluster/etc/7002:/etc/
+    command: >
+      bash -c "echo 'vm.overcommit_memory = 1' >> /etc/sysctl.conf && redis-server /etc/redis/redis.conf"
+    healthcheck:
+      test: [ "CMD", "redis-cli", "-p", "7002", "cluster", "info" ]
+      interval: 1s
+      timeout: 3s
+      retries: 30
+    depends_on:
+      - redis7001
+  redis7003:
+    image: redis:latest
+    container_name: redis7003
+    restart: always
+    ports:
+      - "7003:7003"
+    volumes:
+      - D:/AD/Test-porject/redis/redis-cluster/data/7003:/data
+      - D:/AD/Test-porject/redis/redis-cluster/conf/7003/redis.conf:/etc/redis/redis.conf
+      - D:/AD/Test-porject/redis/redis-cluster/etc/7003:/etc/
+    command: >
+      bash -c "echo 'vm.overcommit_memory = 1' >> /etc/sysctl.conf && redis-server /etc/redis/redis.conf"
+    healthcheck:
+      test: [ "CMD", "redis-cli", "-p", "7003", "cluster", "info" ]
+      interval: 1s
+      timeout: 3s
+      retries: 30
+    depends_on:
+      - redis7002
+  redis7004:
+    image: redis:latest
+    container_name: redis7004
+    restart: always
+    ports:
+      - "7004:7004"
+    volumes:
+      - D:/AD/Test-porject/redis/redis-cluster/data/7004:/data
+      - D:/AD/Test-porject/redis/redis-cluster/conf/7004/redis.conf:/etc/redis/redis.conf
+      - D:/AD/Test-porject/redis/redis-cluster/etc/7004:/etc/
+    command: >
+      bash -c "echo 'vm.overcommit_memory = 1' >> /etc/sysctl.conf && redis-server /etc/redis/redis.conf"
+    healthcheck:
+      test: [ "CMD", "redis-cli", "-p", "7004", "cluster", "info" ]
+      interval: 1s
+      timeout: 3s
+      retries: 30
+    depends_on:
+      - redis7003
+  redis7005:
+    image: redis:latest
+    container_name: redis7005
+    restart: always
+    ports:
+      - "7005:7005"
+    volumes:
+      - D:/AD/Test-porject/redis/redis-cluster/data/7005:/data
+      - D:/AD/Test-porject/redis/redis-cluster/conf/7005/redis.conf:/etc/redis/redis.conf
+      - D:/AD/Test-porject/redis/redis-cluster/etc/7005:/etc/
+    command: >
+      bash -c "echo 'vm.overcommit_memory = 1' >> /etc/sysctl.conf && redis-server /etc/redis/redis.conf"
+    healthcheck:
+      test: [ "CMD", "redis-cli", "-p", "7005", "cluster", "info" ]
+      interval: 1s
+      timeout: 3s
+      retries: 30
+    depends_on:
+      - redis7004
+  redis7006:
+    image: redis:latest
+    container_name: redis7006
+    restart: always
+    ports:
+      - "7006:7006"
+    volumes:
+      - D:/AD/Test-porject/redis/redis-cluster/data/7006:/data
+      - D:/AD/Test-porject/redis/redis-cluster/conf/7006/redis.conf:/etc/redis/redis.conf
+      - D:/AD/Test-porject/redis/redis-cluster/etc/7006:/etc/
+    command: >
+      bash -c "echo 'vm.overcommit_memory = 1' >> /etc/sysctl.conf && redis-server /etc/redis/redis.conf"
+    healthcheck:
+      test: [ "CMD", "redis-cli", "-p", "7006", "cluster", "info" ]
+      interval: 1s
+      timeout: 3s
+      retries: 30
+    depends_on:
+      - redis7005
+  redis7007:
+    image: redis:latest
+    container_name: redis7007
+    restart: always
+    ports:
+      - "7007:7007"
+    volumes:
+      - D:/AD/Test-porject/redis/redis-cluster/data/7007:/data
+      - D:/AD/Test-porject/redis/redis-cluster/conf/7007/redis.conf:/etc/redis/redis.conf
+      - D:/AD/Test-porject/redis/redis-cluster/etc/7007:/etc/
+    command: >
+      bash -c "echo 'vm.overcommit_memory = 1' >> /etc/sysctl.conf && redis-server /etc/redis/redis.conf"
+    healthcheck:
+      test: [ "CMD", "redis-cli", "-p", "7007", "cluster", "info" ]
+      interval: 1s
+      timeout: 3s
+      retries: 30
+    depends_on:
+      - redis7006
+  redis7008:
+    image: redis:latest
+    container_name: redis7008
+    restart: always
+    ports:
+      - "7008:7008"
+    volumes:
+      - D:/AD/Test-porject/redis/redis-cluster/data/7008:/data
+      - D:/AD/Test-porject/redis/redis-cluster/conf/7008/redis.conf:/etc/redis/redis.conf
+      - D:/AD/Test-porject/redis/redis-cluster/etc/7008:/etc/
+    command: >
+      bash -c "echo 'vm.overcommit_memory = 1' >> /etc/sysctl.conf && redis-server /etc/redis/redis.conf"
+    healthcheck:
+      test: [ "CMD", "redis-cli", "-p", "7008", "cluster", "info" ]
+      interval: 1s
+      timeout: 3s
+      retries: 30
+    depends_on:
+      - redis7007
+  redis-cluster-creator:
+    image: redis
+    entrypoint:
+      - /bin/sh
+      - -c
+      - |
+        echo "yes" | redis-cli --cluster create \
+        redis7001:7001 redis7002:7002 redis7003:7003 redis7004:7004 \
+        redis7005:7005 redis7006:7006 redis7007:7007 redis7008:7008 --cluster-replicas 1
+    depends_on:
+      redis7001:
+        condition: service_healthy
+      redis7002:
+        condition: service_healthy
+      redis7003:
+        condition: service_healthy
+      redis7004:
+        condition: service_healthy
+      redis7005:
+        condition: service_healthy
+      redis7006:
+        condition: service_healthy
+      redis7007:
+        condition: service_healthy
+      redis7008:
+        condition: service_healthy

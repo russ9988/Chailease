@@ -1,0 +1,5 @@
+version: "3.7"
+services:
+  elasticsearch:
+    volumes:
+      - ./elasticsearch/volume:/usr/share/elasticsearch/data

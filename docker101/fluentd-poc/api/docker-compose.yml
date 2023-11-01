@@ -1,0 +1,19 @@
+version: "3.7"
+
+services:
+  mediumfluentdweb:
+    image: ${DOCKER_REGISTRY-}mediumfluentdweb
+    build:
+      context: .
+      dockerfile: mediumfluentd.web/Dockerfile
+    restart: on-failure
+    ports:
+      - "81:80"
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+    networks:
+      - medium-fluentd-ntw
+
+networks:
+  medium-fluentd-ntw:
+    external: true
